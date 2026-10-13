@@ -1,0 +1,157 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="gram_sahayak.SiteMaster" %>
+
+<!DOCTYPE html>
+<html lang="en">
+<head runat="server">
+    <meta charset="utf-8" />
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0" />
+
+    <title>Gram Sahayak - Government Schemes</title>
+
+    <link href="Content/master.css" rel="stylesheet" />
+
+    <asp:ContentPlaceHolder ID="HeadContent"
+        runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+
+<body>
+    <form id="form1" runat="server">
+
+        <!-- HEADER: Shared by all pages -->
+        <header class="site-header">
+            <div class="header-container">
+
+                <a href="Home.aspx" class="brand">
+                    <span class="brand-icon">✿</span>
+                    <span class="brand-text">
+                        <strong>GRAM SAHAYAK</strong>
+                        <small>One Step Towards Growth</small>
+                    </span>
+                </a>
+
+                <button type="button"
+                    class="menu-toggle"
+                    onclick="toggleMenu()"
+                    aria-label="Toggle navigation">
+                    ☰
+                </button>
+
+                <nav class="main-nav" id="mainNav">
+                    <a href="Home.aspx" class="nav-link">Home</a>
+                    <a href="CheckEligibility.aspx"
+                       class="nav-link">Check Eligibility</a>
+                    <a href="Schemes.aspx"
+                       class="nav-link">Schemes</a>
+                    <a href="Compare.aspx"
+                       class="nav-link">Compare</a>
+                    <a href="FAQ.aspx"
+                       class="nav-link">FAQ</a>
+                    <a href="Help.aspx"
+                       class="nav-link">Help</a>
+
+                    <a href="CheckEligibility.aspx"
+                       class="header-button">
+                        Check Eligibility
+                    </a>
+                </nav>
+
+            </div>
+        </header>
+
+        <!-- Page-specific content goes here -->
+        <main class="page-content">
+            <asp:ContentPlaceHolder ID="MainContent"
+                runat="server">
+            </asp:ContentPlaceHolder>
+        </main>
+
+        <!-- FOOTER: Shared by all pages -->
+        <footer class="site-footer">
+
+            <div class="footer-stats">
+                <div class="footer-stat">
+                    <h2>500+ Schemes</h2>
+                    <p>Central and State Schemes</p>
+                </div>
+
+                <div class="footer-stat">
+                    <h2>28 States Covered</h2>
+                    <p>Across India</p>
+                </div>
+
+                <div class="footer-stat">
+                    <h2>10 Lakh+ Users</h2>
+                    <p>Empowering Rural India</p>
+                </div>
+            </div>
+
+            <div class="footer-main">
+
+                <div class="footer-about">
+                    <a href="Home.aspx" class="footer-brand">
+                        <span class="brand-icon">✿</span>
+                        <strong>GRAM SAHAYAK</strong>
+                    </a>
+
+                    <p>
+                        Your trusted guide to government schemes.
+                        Find benefits, check your eligibility and
+                        discover opportunities for a better future.
+                    </p>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Popular Schemes</h3>
+                    <a href="Schemes.aspx">PM-Kisan Yojana</a>
+                    <a href="Schemes.aspx">Ayushman Bharat</a>
+                    <a href="Schemes.aspx">PM Awas Yojana</a>
+                    <a href="Schemes.aspx">Scholarship Schemes</a>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <a href="CheckEligibility.aspx">
+                        Check Eligibility
+                    </a>
+                    <a href="Schemes.aspx">Browse Schemes</a>
+                    <a href="Compare.aspx">Compare Schemes</a>
+                    <a href="FAQ.aspx">Frequently Asked Questions</a>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Important Information</h3>
+                    <a href="Help.aspx">How It Works</a>
+                    <a href="Help.aspx">Help & Support</a>
+                    <a href="FAQ.aspx">FAQs</a>
+                    <a href="Help.aspx">Official Resources</a>
+                </div>
+
+            </div>
+
+            <div class="footer-bottom">
+                <p>
+                    &copy; <%= DateTime.Now.Year %>
+                    Gram Sahayak. All rights reserved.
+                </p>
+
+                <p>
+                    Eligibility information should be verified
+                    with the relevant official government portal.
+                </p>
+            </div>
+
+        </footer>
+
+    </form>
+
+    <script>
+        function toggleMenu() {
+            var menu = document.getElementById("mainNav");
+            menu.classList.toggle("nav-open");
+        }
+    </script>
+
+</body>
+</html>

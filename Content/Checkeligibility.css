@@ -1,0 +1,578 @@
+﻿
+/* ===== ELIGIBILITY PAGE ===== */
+
+.eligibility-page {
+    background: #f5f8f5;
+    padding: 32px 5% 40px;
+    min-height: 500px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.eligibility-container {
+    max-width: 1120px;
+    margin: 0 auto;
+}
+
+.eligibility-heading {
+    margin-bottom: 24px;
+}
+
+.eligibility-label {
+    color: #168d27;
+    font-size: 10px;
+    font-weight: 800;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.eligibility-heading h1 {
+    color: #202d88;
+    font-size: 30px;
+    font-weight: 800;
+    line-height: 1.3;
+    margin: 0 0 6px;
+}
+
+.eligibility-heading p {
+    color: #737b77;
+    font-size: 12px;
+    margin: 0;
+}
+
+.eligibility-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 2.1fr) minmax(240px, 1fr);
+    align-items: start;
+    gap: 24px;
+}
+
+/* ===== FORM CARD ===== */
+
+.eligibility-form-card {
+    background: #ffffff;
+    border: 1px solid #e0e8e0;
+    border-radius: 11px;
+    padding: 24px;
+    min-width: 0;
+}
+
+.progress-steps {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 10px;
+    color: #555e59;
+    font-size: 10px;
+    padding-bottom: 12px;
+    white-space: nowrap;
+}
+
+.progress-step {
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.progress-step.active {
+    color: #168d27;
+    font-weight: 700;
+}
+
+.progress-track {
+    height: 4px;
+    background: #e8eee8;
+    margin-bottom: 25px;
+}
+
+.progress-fill {
+    height: 100%;
+    width: 28%;
+    background: #168d27;
+}
+
+.eligibility-fields {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 18px;
+    row-gap: 19px;
+}
+
+.field-group {
+    min-width: 0;
+}
+
+.field-group > label {
+    display: block;
+    font-size: 11px;
+    font-weight: 700;
+    color: #202d88;
+    margin-bottom: 7px;
+}
+
+.field-group input[type="number"],
+.field-group select {
+    display: block;
+    width: 100%;
+    height: 39px;
+    border: 1px solid #dce4dc;
+    border-radius: 7px;
+    background: #ffffff;
+    color: #414944;
+    padding: 0 11px;
+    font-family: inherit;
+    font-size: 11px;
+    outline: none;
+}
+
+.field-group input:focus,
+.field-group select:focus {
+    border-color: #168d27;
+    box-shadow: 0 0 0 2px rgba(22, 141, 39, 0.09);
+}
+
+/* ===== RADIO CHOICES ===== */
+
+.choice-row {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 7px;
+    min-height: 39px;
+}
+
+.choice-pill {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    min-height: 35px;
+    padding: 0 11px;
+    border: 1px solid #dce4dc;
+    border-radius: 7px;
+    background: #ffffff;
+    cursor: pointer;
+    color: #505951;
+    font-size: 10px;
+}
+
+.choice-pill input {
+    accent-color: #168d27;
+    margin: 0;
+}
+
+.choice-pill.selected {
+    color: #168d27;
+    border-color: #c9e5cb;
+    background: #edf8ee;
+    font-weight: 700;
+}
+
+/* ===== ADDITIONAL OPTIONS ===== */
+
+.additional-options {
+    margin-top: 24px;
+    padding-top: 19px;
+    border-top: 1px solid #e5ebe5;
+}
+
+.additional-title {
+    display: block;
+    color: #202d88;
+    font-size: 11px;
+    font-weight: 700;
+    margin-bottom: 12px;
+}
+
+.additional-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+}
+
+.check-option {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    min-height: 43px;
+    padding: 9px 11px;
+    border: 1px solid #dce4dc;
+    border-radius: 7px;
+    background: #ffffff;
+    cursor: pointer;
+    font-size: 10px;
+    color: #505951;
+}
+
+.check-option input {
+    accent-color: #ff9635;
+    flex-shrink: 0;
+}
+
+.disability-option:has(input:checked) {
+    background: #fff0e5;
+    border-color: #ffad73;
+    color: #202d88;
+}
+
+/* ===== FORM BUTTONS ===== */
+
+.form-actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-top: 24px;
+    padding-top: 19px;
+    border-top: 1px solid #e5ebe5;
+}
+
+.reset-button,
+.analyze-button {
+    min-height: 39px;
+    padding: 0 17px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 11px;
+    font-weight: 700;
+    transition: background 0.2s ease;
+}
+
+.reset-button {
+    border: 1px solid #aab4ab;
+    background: #ffffff;
+    color: #555e59;
+}
+
+.reset-button:hover {
+    background: #f0f3f0;
+}
+
+.analyze-button {
+    border: 1px solid #138c08;
+    background: #138c08;
+    color: #ffffff;
+}
+
+.analyze-button:hover {
+    background: #0d7107;
+}
+
+.analyze-button span {
+    margin-left: 5px;
+}
+
+.form-message {
+    display: none;
+    margin-top: 16px;
+    padding: 12px;
+    border-radius: 6px;
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+.form-message.visible {
+    display: block;
+    color: #176c26;
+    background: #edf8ee;
+    border: 1px solid #c9e5cb;
+}
+
+/* ===== RIGHT INFORMATION PANEL ===== */
+
+.eligibility-info {
+    background: #202782;
+    color: #ffffff;
+    padding: 24px;
+    border-radius: 10px;
+}
+
+.eligibility-info > h2 {
+    color: #ffad35;
+    font-size: 17px;
+    line-height: 1.5;
+    margin: 0 0 15px;
+}
+
+.eligibility-info > p {
+    color: #e0e4ff;
+    font-size: 11px;
+    line-height: 1.8;
+    margin-bottom: 18px;
+}
+
+.info-item {
+    margin-bottom: 17px;
+}
+
+.info-item:last-child {
+    margin-bottom: 0;
+}
+
+.info-item h3 {
+    color: #ffffff;
+    font-size: 12px;
+    margin: 0 0 4px;
+}
+
+.info-item p {
+    color: #e0e4ff;
+    font-size: 10px;
+    line-height: 1.8;
+    margin: 0;
+}
+
+/* ===== RESPONSIVE TABLET ===== */
+
+@media (max-width: 900px) {
+    .eligibility-page {
+        padding-left: 3%;
+        padding-right: 3%;
+    }
+
+    .eligibility-layout {
+        grid-template-columns: minmax(0, 1.7fr) minmax(210px, 1fr);
+        gap: 16px;
+    }
+
+    .eligibility-form-card {
+        padding: 17px;
+    }
+
+    .progress-steps {
+        gap: 6px;
+        font-size: 9px;
+    }
+
+    .eligibility-info {
+        padding: 18px;
+    }
+
+    .eligibility-info > h2 {
+        font-size: 15px;
+    }
+}
+
+/* ===== RESPONSIVE MOBILE ===== */
+
+@media (max-width: 650px) {
+    .eligibility-page {
+        padding: 26px 16px 32px;
+    }
+
+    .eligibility-heading h1 {
+        font-size: 26px;
+    }
+
+    .eligibility-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .eligibility-form-card {
+        padding: 16px;
+    }
+
+    .progress-steps {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        row-gap: 12px;
+        white-space: normal;
+    }
+
+    .eligibility-fields {
+        grid-template-columns: 1fr;
+        row-gap: 17px;
+    }
+
+    .additional-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .eligibility-info {
+        padding: 21px;
+    }
+
+    .form-actions {
+        flex-wrap: wrap;
+    }
+}
+
+@media (max-width: 360px) {
+    .eligibility-heading h1 {
+        font-size: 23px;
+    }
+
+    .eligibility-form-card {
+        padding: 12px;
+    }
+
+    .choice-row {
+        gap: 5px;
+    }
+
+    .choice-pill {
+        padding: 0 8px;
+        font-size: 9px;
+    }
+
+    .form-actions {
+        align-items: stretch;
+        flex-direction: column;
+    }
+}
+
+
+/* ===== MULTI-STEP WIZARD ===== */
+
+.wizard-step {
+    display: none;
+}
+
+.wizard-step.active {
+    display: block;
+    animation: wizardFade 0.2s ease;
+}
+
+@keyframes wizardFade {
+    from {
+        opacity: 0;
+        transform: translateY(4px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.wizard-title {
+    color: #202d88;
+    font-size: 18px;
+    margin: 0 0 5px;
+}
+
+.wizard-description {
+    color: #737b77;
+    font-size: 12px;
+    margin: 0 0 22px;
+}
+
+.progress-step {
+    line-height: 1.5;
+    transition: color 0.2s ease;
+}
+
+.progress-step.completed {
+    color: #168d27;
+}
+
+.progress-step.completed::before {
+    content: "✓ ";
+    font-weight: bold;
+}
+
+.wizard-actions {
+    margin-top: 25px;
+}
+
+#backButton:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+}
+
+.wizard-options {
+    margin-top: 18px;
+}
+
+.privacy-note {
+    background: #f1f5ff;
+    border: 1px solid #dce4ff;
+    border-radius: 8px;
+    padding: 14px;
+    margin-top: 22px;
+}
+
+.privacy-note strong {
+    display: block;
+    color: #202d88;
+    font-size: 12px;
+    margin-bottom: 5px;
+}
+
+.privacy-note p {
+    color: #626c79;
+    font-size: 11px;
+    line-height: 1.7;
+    margin: 0;
+}
+
+/* ===== RESULTS ===== */
+
+.results-summary {
+    background: #edf8ee;
+    border: 1px solid #cce8ce;
+    border-radius: 8px;
+    color: #16772a;
+    font-size: 13px;
+    font-weight: 700;
+    padding: 14px;
+    margin: 18px 0;
+}
+
+.results-list {
+    display: grid;
+    gap: 12px;
+}
+
+.result-card {
+    background: #ffffff;
+    border: 1px solid #e1e8e1;
+    border-radius: 8px;
+    padding: 16px;
+}
+
+.result-card h3 {
+    color: #202d88;
+    font-size: 14px;
+    margin: 0 0 8px;
+}
+
+.result-card p {
+    color: #667169;
+    font-size: 12px;
+    line-height: 1.7;
+    margin: 0 0 12px;
+}
+
+.result-badge {
+    display: inline-block;
+    color: #18732b;
+    background: #edf8ee;
+    border-radius: 5px;
+    padding: 5px 8px;
+    font-size: 10px;
+    font-weight: 700;
+}
+
+.results-disclaimer {
+    color: #777f78;
+    font-size: 11px;
+    line-height: 1.7;
+    margin-top: 18px;
+}
+
+@media (max-width: 650px) {
+    .wizard-title {
+        font-size: 17px;
+    }
+
+    .wizard-options {
+        grid-template-columns: 1fr;
+    }
+
+    .progress-step {
+        white-space: normal;
+    }
+
+    .result-card {
+        padding: 13px;
+    }
+}
