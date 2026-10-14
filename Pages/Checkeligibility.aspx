@@ -1,5 +1,4 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Checkeligibility.aspx.cs" Inherits="gram_sahayak.Pages.Checkeligibility" %>
-<!-- Commit note: saved by divyanakum1999-cloud -->
 <asp:Content ID="EligibilityHead"
     ContentPlaceHolderID="HeadContent"
     runat="server">
@@ -121,7 +120,7 @@
 
                     <div class="field-group">
                         <label for="caste">Caste Category</label>
-                        <select id="caste" required>
+                        <select id="caste" runat="server" ClientIDMode="Static" required>
                             <option value="General">General</option>
                             <option value="OBC" selected>OBC</option>
                             <option value="SC">SC</option>
@@ -129,11 +128,12 @@
                             <option value="Other">Other</option>
                             <option value="Prefer not to say">Prefer not to say</option>
                         </select>
+                        <asp:RequiredFieldValidator ID="rvCaste" runat="server" ControlToValidate="caste" ErrorMessage="Please select caste category." Display="Dynamic" CssClass="field-error" />
                     </div>
 
                     <div class="field-group">
                         <label for="familySize">Family Members</label>
-                        <select id="familySize" required>
+                        <select id="familySize" runat="server" ClientIDMode="Static" required>
                             <option value="1">1 member</option>
                             <option value="2">2 members</option>
                             <option value="3">3 members</option>
@@ -141,14 +141,16 @@
                             <option value="5">5 members</option>
                             <option value="6">6 or more members</option>
                         </select>
+                        <asp:RequiredFieldValidator ID="rvFamilySize" runat="server" ControlToValidate="familySize" ErrorMessage="Please select family size." Display="Dynamic" CssClass="field-error" />
                     </div>
 
                     <div class="field-group">
                         <label for="houseType">Place of Residence</label>
-                        <select id="houseType" required>
+                        <select id="houseType" runat="server" ClientIDMode="Static" required>
                             <option value="Rural" selected>Rural / Village</option>
                             <option value="Urban">Urban / City</option>
                         </select>
+                        <asp:RequiredFieldValidator ID="rvHouseType" runat="server" ControlToValidate="houseType" ErrorMessage="Please select place of residence." Display="Dynamic" CssClass="field-error" />
                     </div>
 
                     <div class="field-group">
