@@ -41,11 +41,14 @@
                 <h2 class="wizard-title">Personal Details</h2>
                 <p class="wizard-description">Tell us a little about yourself.</p>
 
+                <asp:ValidationSummary ID="ValidationSummary1" runat="server" CssClass="validation-summary" HeaderText="Please correct the following:" ShowSummary="true" DisplayMode="BulletList" />
+
                 <div class="eligibility-fields">
 
                     <div class="field-group">
                         <label for="age">Age of Applicant (વય)</label>
-                        <input type="number" id="age" min="1" max="120" value="42" required />
+                        <input type="number" id="age" runat="server" ClientIDMode="Static" min="1" max="120" value="42" required />
+                        <asp:RequiredFieldValidator ID="rvAge" runat="server" ControlToValidate="age" ErrorMessage="Please enter age." Display="Dynamic" CssClass="field-error" />
                     </div>
 
                     <div class="field-group">
@@ -68,7 +71,7 @@
 
                     <div class="field-group">
                         <label for="state">State of Residence</label>
-                        <select id="state" required>
+                        <select id="state" runat="server" ClientIDMode="Static" required>
                             <option value="Gujarat">Gujarat</option>
                             <option value="Rajasthan">Rajasthan</option>
                             <option value="Maharashtra">Maharashtra</option>
@@ -77,11 +80,12 @@
                             <option value="Bihar">Bihar</option>
                             <option value="Other">Other</option>
                         </select>
+                        <asp:RequiredFieldValidator ID="rvState" runat="server" ControlToValidate="state" ErrorMessage="Please select a state." Display="Dynamic" CssClass="field-error" />
                     </div>
 
                     <div class="field-group">
                         <label for="occupation">Primary Occupation</label>
-                        <select id="occupation" required>
+                        <select id="occupation" runat="server" ClientIDMode="Static" required>
                             <option value="Farmer">Farmer / Agriculture</option>
                             <option value="Student">Student</option>
                             <option value="Self-employed">Self-employed</option>
@@ -90,16 +94,18 @@
                             <option value="Unemployed">Unemployed</option>
                             <option value="Other">Other</option>
                         </select>
+                        <asp:RequiredFieldValidator ID="rvOccupation" runat="server" ControlToValidate="occupation" ErrorMessage="Please select occupation." Display="Dynamic" CssClass="field-error" />
                     </div>
 
                     <div class="field-group">
                         <label for="income">Annual Family Income</label>
-                        <select id="income" required>
+                        <select id="income" runat="server" ClientIDMode="Static" required>
                             <option value="0-150000">Below ₹1,50,000</option>
                             <option value="150000-300000">₹1,50,000–₹3,00,000</option>
                             <option value="300000-500000">₹3,00,000–₹5,00,000</option>
                             <option value="500000+">Above ₹5,00,000</option>
                         </select>
+                        <asp:RequiredFieldValidator ID="rvIncome" runat="server" ControlToValidate="income" ErrorMessage="Please select income." Display="Dynamic" CssClass="field-error" />
                     </div>
 
                 </div>
