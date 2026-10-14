@@ -41,14 +41,14 @@
                 <h2 class="wizard-title">Personal Details</h2>
                 <p class="wizard-description">Tell us a little about yourself.</p>
 
-                <asp:ValidationSummary ID="ValidationSummary1" runat="server" CssClass="validation-summary" HeaderText="Please correct the following:" ShowSummary="true" DisplayMode="BulletList" />
+                <asp:ValidationSummary ID="ValidationSummary1" runat="server" CssClass="validation-summary" HeaderText="Please correct the following:" ShowSummary="true" DisplayMode="BulletList" ValidationGroup="Step1" />
 
                 <div class="eligibility-fields">
 
                     <div class="field-group">
                         <label for="age">Age of Applicant (વય)</label>
                         <input type="number" id="age" runat="server" ClientIDMode="Static" min="1" max="120" value="42" required />
-                        <asp:RequiredFieldValidator ID="rvAge" runat="server" ControlToValidate="age" ErrorMessage="Please enter age." Display="Dynamic" CssClass="field-error" />
+                        <asp:RequiredFieldValidator ID="rvAge" runat="server" ControlToValidate="age" ErrorMessage="Please enter age." Display="Dynamic" CssClass="field-error" ValidationGroup="Step1" />
                     </div>
 
                     <div class="field-group">
@@ -80,7 +80,7 @@
                             <option value="Bihar">Bihar</option>
                             <option value="Other">Other</option>
                         </select>
-                        <asp:RequiredFieldValidator ID="rvState" runat="server" ControlToValidate="state" ErrorMessage="Please select a state." Display="Dynamic" CssClass="field-error" />
+                        <asp:RequiredFieldValidator ID="rvState" runat="server" ControlToValidate="state" ErrorMessage="Please select a state." Display="Dynamic" CssClass="field-error" ValidationGroup="Step1" />
                     </div>
 
                     <div class="field-group">
@@ -94,7 +94,7 @@
                             <option value="Unemployed">Unemployed</option>
                             <option value="Other">Other</option>
                         </select>
-                        <asp:RequiredFieldValidator ID="rvOccupation" runat="server" ControlToValidate="occupation" ErrorMessage="Please select occupation." Display="Dynamic" CssClass="field-error" />
+                        <asp:RequiredFieldValidator ID="rvOccupation" runat="server" ControlToValidate="occupation" ErrorMessage="Please select occupation." Display="Dynamic" CssClass="field-error" ValidationGroup="Step1" />
                     </div>
 
                     <div class="field-group">
@@ -105,7 +105,7 @@
                             <option value="300000-500000">₹3,00,000–₹5,00,000</option>
                             <option value="500000+">Above ₹5,00,000</option>
                         </select>
-                        <asp:RequiredFieldValidator ID="rvIncome" runat="server" ControlToValidate="income" ErrorMessage="Please select income." Display="Dynamic" CssClass="field-error" />
+                        <asp:RequiredFieldValidator ID="rvIncome" runat="server" ControlToValidate="income" ErrorMessage="Please select income." Display="Dynamic" CssClass="field-error" ValidationGroup="Step1" />
                     </div>
 
                 </div>
@@ -115,6 +115,8 @@
             <div class="wizard-step" data-step="2">
                 <h2 class="wizard-title">Category & Household</h2>
                 <p class="wizard-description">Help us understand your household circumstances.</p>
+
+                <asp:ValidationSummary ID="ValidationSummary2" runat="server" CssClass="validation-summary" HeaderText="Please correct the following:" ShowSummary="true" DisplayMode="BulletList" ValidationGroup="Step2" />
 
                 <div class="eligibility-fields">
 
@@ -128,7 +130,7 @@
                             <option value="Other">Other</option>
                             <option value="Prefer not to say">Prefer not to say</option>
                         </select>
-                        <asp:RequiredFieldValidator ID="rvCaste" runat="server" ControlToValidate="caste" ErrorMessage="Please select caste category." Display="Dynamic" CssClass="field-error" />
+                        <asp:RequiredFieldValidator ID="rvCaste" runat="server" ControlToValidate="caste" ErrorMessage="Please select caste category." Display="Dynamic" CssClass="field-error" ValidationGroup="Step2" />
                     </div>
 
                     <div class="field-group">
@@ -141,7 +143,7 @@
                             <option value="5">5 members</option>
                             <option value="6">6 or more members</option>
                         </select>
-                        <asp:RequiredFieldValidator ID="rvFamilySize" runat="server" ControlToValidate="familySize" ErrorMessage="Please select family size." Display="Dynamic" CssClass="field-error" />
+                        <asp:RequiredFieldValidator ID="rvFamilySize" runat="server" ControlToValidate="familySize" ErrorMessage="Please select family size." Display="Dynamic" CssClass="field-error" ValidationGroup="Step2" />
                     </div>
 
                     <div class="field-group">
@@ -150,7 +152,7 @@
                             <option value="Rural" selected>Rural / Village</option>
                             <option value="Urban">Urban / City</option>
                         </select>
-                        <asp:RequiredFieldValidator ID="rvHouseType" runat="server" ControlToValidate="houseType" ErrorMessage="Please select place of residence." Display="Dynamic" CssClass="field-error" />
+                        <asp:RequiredFieldValidator ID="rvHouseType" runat="server" ControlToValidate="houseType" ErrorMessage="Please select place of residence." Display="Dynamic" CssClass="field-error" ValidationGroup="Step2" />
                     </div>
 
                     <div class="field-group">
@@ -390,13 +392,18 @@
         }
 
         function validateStep(step) {
-            // Run ASP.NET client-side validation if available
+            // Run ASP.NET client-side validation for the current wizard step
             if (typeof(Page_ClientValidate) === 'function') {
                 try {
-                    Page_ClientValidate();
-                    if (typeof(Page_IsValid) !== 'undefined' && !Page_IsValid) {
-                        showMessage("Please complete all required fields.");
-                        return false;
+                    var vg = null;
+                    if (step === 1) vg = 'Step1';
+                    else if (step === 2) vg = 'Step2';
+                    if (vg) {
+                        Page_ClientValidate(vg);
+                        if (typeof(Page_IsValid) !== 'undefined' && !Page_IsValid) {
+                            showMessage("Please complete all required fields.");
+                            return false;
+                        }
                     }
                 } catch (e) {
                     // ignore if client validation not available
