@@ -102,7 +102,6 @@
     <Content Include=".gitignore" />
     <Content Include="About.aspx" />
     <Content Include="Contact.aspx" />
-    <Content Include="Content\AllSchemes.css" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
     <Content Include="Content\bootstrap-grid.rtl.css" />
@@ -130,7 +129,8 @@
     <Content Include="Default.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
-    <Content Include="Pages\AllSchemes.aspx" />
+    <Content Include="image\gram sahayak home page image.jpeg" />
+    <Content Include="image\wheat-logo.svg" />
     <Content Include="Pages\Checkeligibility.aspx" />
     <Content Include="Pages\Compare.aspx" />
     <Content Include="Pages\FAQ.aspx" />
@@ -225,13 +225,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Pages\AllSchemes.aspx.cs">
-      <DependentUpon>AllSchemes.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Pages\AllSchemes.aspx.designer.cs">
-      <DependentUpon>AllSchemes.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Pages\Checkeligibility.aspx.cs">
       <DependentUpon>Checkeligibility.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -299,7 +292,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="image\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

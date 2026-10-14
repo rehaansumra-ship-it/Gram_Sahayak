@@ -56,7 +56,7 @@
             </div>
 
             <div class="hero-image">
-                <img src="Images/rural-farm.png"
+                <img src="../image/gram sahayak home page image.jpeg"
                      alt="Illustration of a rural Indian farm" />
             </div>
 

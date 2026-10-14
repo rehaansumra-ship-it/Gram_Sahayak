@@ -1,329 +1,403 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Schemes.aspx.cs" Inherits="gram_sahayak.Pages.WebForm1" %>
-
-
-
-<asp:Content ID="ResultsHead"
-    ContentPlaceHolderID="HeadContent"
-    runat="server">
-    <link href="../Content/Schemes.css"
-          rel="stylesheet" type="text/css" />
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Schemes.aspx.cs" Inherits="gram_sahayak.Pages.Schemes" %>
+<asp:Content ID="SchemesHead" ContentPlaceHolderID="HeadContent" runat="server">
+    <link href="../Content/Schemes.css" rel="stylesheet" type="text/css" />
 </asp:Content>
 
-<asp:Content ID="ResultsContent"
-    ContentPlaceHolderID="MainContent"
-    runat="server">
+<asp:Content ID="SchemesContent" ContentPlaceHolderID="MainContent" runat="server">
 
-<section class="results-page">
-    <div class="results-container">
+<section class="schemes-page">
+    <div class="schemes-container">
 
-        <div class="results-heading">
-            <div>
-                <span class="results-eyebrow">EVALUATION COMPLETE</span>
-                <div class="results-title-row">
-                    <h1>Your Eligible Schemes</h1>
-                    <span class="schemes-found">12 Schemes Found</span>
-                </div>
-            </div>
-
-            <button type="button" class="download-report"
-                    onclick="window.print()">
-                ↧ Download Report (PDF)
-            </button>
+        <div class="schemes-heading">
+            <span class="heading-label">GRAM SAHAYAK</span>
+            <h1>All Government Schemes</h1>
+            <p>બધી સરકારી યોજનાઓ — Find government benefits for you and your family.</p>
         </div>
 
-        <div class="results-layout">
+        <div class="scheme-search">
+            <span class="search-icon">⌕</span>
+            <input type="search" id="schemeSearch"
+                placeholder="Search schemes by name, keyword or benefit..." />
+            <button type="button" id="searchButton">Search</button>
+        </div>
 
-            <!-- LEFT SIDEBAR -->
-            <aside class="results-sidebar">
+        <div class="all-schemes-layout">
 
-                <div class="match-panel">
-                    <h2>Match Rating</h2>
-                    <div class="match-circle">
-                        <strong>78%</strong>
-                        <span>Matched</span>
-                    </div>
-                    <p>
-                        Based on your age, agricultural occupation
-                        and BPL card, your profile matches 12
-                        active schemes.
-                    </p>
+            <!-- LEFT FILTER SIDEBAR -->
+            <aside class="scheme-filters">
+
+                <div class="filter-heading">
+                    <h2>Filters</h2>
+                    <button type="button" id="clearFilters">Clear All</button>
                 </div>
 
-                <div class="category-panel">
-                    <h2>Filter By Category</h2>
+                <div class="filter-group">
+                    <h3>Target Category</h3>
 
-                    <button class="result-filter active"
-                            data-filter="agriculture">
-                        <span>Agriculture (ખેતી)</span>
-                        <span class="filter-count">3</span>
-                    </button>
+                    <label><input type="checkbox" class="category-filter" value="agriculture" checked /> Farmers &amp; Agriculture</label>
+                    <label><input type="checkbox" class="category-filter" value="education" /> Students &amp; Education</label>
+                    <label><input type="checkbox" class="category-filter" value="women" /> Women &amp; Girls</label>
+                    <label><input type="checkbox" class="category-filter" value="senior" /> Senior Citizens</label>
+                    <label><input type="checkbox" class="category-filter" value="healthcare" checked /> Healthcare &amp; Insurance</label>
+                    <label><input type="checkbox" class="category-filter" value="pension" /> Pension &amp; Welfare</label>
+                    <label><input type="checkbox" class="category-filter" value="housing" /> Housing Assistance</label>
+                </div>
 
-                    <button class="result-filter"
-                            data-filter="financial">
-                        <span>Financial Aid (નાણાકીય)</span>
-                        <span class="filter-count">2</span>
-                    </button>
+                <div class="filter-group">
+                    <h3>Maximum Family Income</h3>
+                    <div class="income-value">Up to ₹<span id="incomeDisplay">2,50,000</span> / year</div>
 
-                    <button class="result-filter"
-                            data-filter="healthcare">
-                        <span>Healthcare (આરોગ્ય)</span>
-                        <span class="filter-count">3</span>
-                    </button>
+                    <input type="range" id="incomeRange" min="50000" max="1000000"
+                        step="50000" value="250000" />
 
-                    <button class="result-filter"
-                            data-filter="housing">
-                        <span>Housing (આવાસ)</span>
-                        <span class="filter-count">2</span>
-                    </button>
+                    <div class="range-labels">
+                        <span>₹50,000</span>
+                        <span>₹10,00,000</span>
+                    </div>
+                </div>
 
-                    <button class="result-filter"
-                            data-filter="all">
-                        <span>All Categories</span>
-                        <span class="filter-count">12</span>
-                    </button>
+                <div class="filter-group state-filter">
+                    <h3>State Preference</h3>
+                    <select id="statePreference">
+                        <option value="all">All States</option>
+                        <option value="gujarat" selected>Gujarat (ગુજરાત)</option>
+                        <option value="national">Central Government</option>
+                    </select>
                 </div>
 
             </aside>
 
-            <!-- RIGHT RESULTS LIST -->
-            <div class="results-list">
+            <!-- SCHEME RESULTS -->
+            <div class="scheme-results-area">
 
-                <article class="result-scheme-card"
-                         data-category="agriculture">
-
-                    <div class="scheme-meta">
-                        <div>
-                            <span class="scheme-tag">Agriculture</span>
-                            <span class="match-percent">85% Match Rating</span>
-                        </div>
-                        <span class="eligibility-badge">Highly Eligible</span>
-                    </div>
-
-                    <h2>PM Kisan Samman Nidhi</h2>
-
-                    <div class="scheme-key-benefit">
-                        Key Benefit:
-                        <strong>₹6,000 / year direct bank transfer</strong>
-                    </div>
-
-                    <p class="matched-criteria">
-                        Matched criteria: You own agricultural land,
-                        classified as OBC, and annual income is under
-                        the selected threshold.
-                    </p>
-
-                    <div class="scheme-card-actions">
-                        <button type="button" class="roadmap-toggle">
-                            Guidance Roadmap Available <span>＋</span>
-                        </button>
-
-                        <a href="https://pmkisan.gov.in/"
-                           target="_blank" rel="noopener noreferrer"
-                           class="application-button">
-                            Visit Official Website
-                        </a>
-                    </div>
-
-                    <div class="roadmap-content">
-                        <ol>
-                            <li>Review the official PM-Kisan eligibility requirements.</li>
-                            <li>Prepare land records and required identity documents.</li>
-                            <li>Use the official portal to check registration and application status.</li>
-                        </ol>
-                    </div>
-                </article>
-
-                <article class="result-scheme-card"
-                         data-category="healthcare">
-
-                    <div class="scheme-meta">
-                        <div>
-                            <span class="scheme-tag healthcare-tag">Healthcare</span>
-                            <span class="match-percent">65% Match Rating</span>
-                        </div>
-                        <span class="eligibility-badge">Potential Match</span>
-                    </div>
-
-                    <h2>Ayushman Bharat PM-JAY</h2>
-
-                    <div class="scheme-key-benefit">
-                        Key Benefit:
-                        <strong>Eligible hospital treatment coverage</strong>
-                    </div>
-
-                    <p class="matched-criteria">
-                        Your household information may be relevant.
-                        Actual eligibility depends on the applicable
-                        beneficiary database and scheme rules.
-                    </p>
-
-                    <div class="scheme-card-actions">
-                        <button type="button" class="roadmap-toggle">
-                            Guidance Roadmap Available <span>＋</span>
-                        </button>
-
-                        <a href="https://nha.gov.in/"
-                           target="_blank" rel="noopener noreferrer"
-                           class="application-button">
-                            Visit Official Website
-                        </a>
-                    </div>
-
-                    <div class="roadmap-content">
-                        <ol>
-                            <li>Check whether your household is covered under PM-JAY.</li>
-                            <li>Verify beneficiary details through an official channel.</li>
-                            <li>Contact an empanelled hospital or official helpdesk for assistance.</li>
-                        </ol>
-                    </div>
-                </article>
-
-                <article class="result-scheme-card"
-                         data-category="housing">
-
-                    <div class="scheme-meta">
-                        <div>
-                            <span class="scheme-tag housing-tag">Housing</span>
-                            <span class="match-percent">78% Match Rating</span>
-                        </div>
-                        <span class="eligibility-badge">Potential Match</span>
-                    </div>
-
-                    <h2>Pradhan Mantri Awas Yojana (Rural)</h2>
-
-                    <div class="scheme-key-benefit">
-                        Key Benefit:
-                        <strong>Housing assistance for eligible households</strong>
-                    </div>
-
-                    <p class="matched-criteria">
-                        Your rural residence and household circumstances
-                        may be relevant. Selection is subject to official
-                        records and applicable criteria.
-                    </p>
-
-                    <div class="scheme-card-actions">
-                        <button type="button" class="roadmap-toggle">
-                            Guidance Roadmap Available <span>＋</span>
-                        </button>
-
-                        <a href="https://pmayg.nic.in/"
-                           target="_blank" rel="noopener noreferrer"
-                           class="application-button">
-                            Visit Official Website
-                        </a>
-                    </div>
-
-                    <div class="roadmap-content">
-                        <ol>
-                            <li>Review the current rural housing scheme criteria.</li>
-                            <li>Check your household listing with the relevant local authority.</li>
-                            <li>Follow the official process for verification and application.</li>
-                        </ol>
-                    </div>
-                </article>
-
-                <article class="result-scheme-card"
-                         data-category="agriculture">
-
-                    <div class="scheme-meta">
-                        <div>
-                            <span class="scheme-tag">Agriculture</span>
-                            <span class="match-percent">70% Match Rating</span>
-                        </div>
-                        <span class="eligibility-badge">Potential Match</span>
-                    </div>
-
-                    <h2>Kisan Credit Card</h2>
-
-                    <div class="scheme-key-benefit">
-                        Key Benefit:
-                        <strong>Credit for eligible agricultural activities</strong>
-                    </div>
-
-                    <p class="matched-criteria">
-                        Your agricultural occupation may be relevant.
-                        Credit limits, lending conditions and eligibility
-                        are determined by the applicable rules and lender.
-                    </p>
-
-                    <div class="scheme-card-actions">
-                        <button type="button" class="roadmap-toggle">
-                            Guidance Roadmap Available <span>＋</span>
-                        </button>
-
-                        <a href="https://www.myscheme.gov.in/"
-                           target="_blank" rel="noopener noreferrer"
-                           class="application-button">
-                            Explore Scheme
-                        </a>
-                    </div>
-
-                    <div class="roadmap-content">
-                        <ol>
-                            <li>Review the applicable Kisan Credit Card requirements.</li>
-                            <li>Contact a participating bank or financial institution.</li>
-                            <li>Ask about required documents, credit limits and application steps.</li>
-                        </ol>
-                    </div>
-                </article>
-
-                <div id="noResults" class="no-results" hidden>
-                    No schemes found in this category.
-                    Select another filter to continue.
+                <div class="results-heading">
+                    <h2>Available Schemes</h2>
+                    <span id="resultsCount">0 schemes found</span>
                 </div>
+
+                <div class="scheme-cards" id="schemeCards">
+
+                    <article class="all-scheme-card" data-category="agriculture"
+                        data-income="250000" data-state="national"
+                        data-search="pm kisan samman nidhi farmer agriculture 6000 cash support">
+
+                        <div class="card-meta">
+                            <span class="scheme-badge">Agriculture</span>
+                            <strong>₹6,000 / year</strong>
+                        </div>
+
+                        <h2>PM Kisan Samman Nidhi</h2>
+                        <p>Direct financial assistance in three instalments to eligible farmer families, subject to scheme rules.</p>
+                        <a href="https://pmkisan.gov.in/" target="_blank" rel="noopener noreferrer">Official Website ↗</a>
+                    </article>
+
+                    <article class="all-scheme-card" data-category="healthcare"
+                        data-income="250000" data-state="national"
+                        data-search="ayushman bharat pm jay healthcare health insurance 5 lakhs medical coverage">
+
+                        <div class="card-meta">
+                            <span class="scheme-badge">Healthcare</span>
+                            <strong>Up to ₹5 lakh</strong>
+                        </div>
+
+                        <h2>Ayushman Bharat (PM-JAY)</h2>
+                        <p>Hospitalisation coverage for eligible families according to the scheme's eligibility rules.</p>
+                        <a href="https://pmjay.gov.in/" target="_blank" rel="noopener noreferrer">Official Website ↗</a>
+                    </article>
+
+                    <article class="all-scheme-card" data-category="housing"
+                        data-income="300000" data-state="national"
+                        data-search="pm awas yojana rural housing home assistance subsidy">
+
+                        <div class="card-meta">
+                            <span class="scheme-badge">Housing</span>
+                            <strong>Housing assistance</strong>
+                        </div>
+
+                        <h2>PM Awas Yojana (Rural)</h2>
+                        <p>Financial support for eligible rural families to construct a permanent home under applicable rules.</p>
+                        <a href="https://pmayg.nic.in/" target="_blank" rel="noopener noreferrer">Official Website ↗</a>
+                    </article>
+
+                    <article class="all-scheme-card" data-category="women"
+                        data-income="300000" data-state="national"
+                        data-search="sukanya samriddhi yojana girl child savings financial security interest">
+
+                        <div class="card-meta">
+                            <span class="scheme-badge">Women &amp; Girls</span>
+                            <strong>Long-term savings</strong>
+                        </div>
+
+                        <h2>Sukanya Samriddhi Yojana</h2>
+                        <p>A savings scheme for eligible girl children, subject to applicable account and deposit rules.</p>
+                        <a href="https://www.nsiindia.gov.in/" target="_blank" rel="noopener noreferrer">Official Website ↗</a>
+                    </article>
+
+                    <article class="all-scheme-card" data-category="pension"
+                        data-income="250000" data-state="national"
+                        data-search="pradhan mantri shram yogi maandhan pension monthly pension worker">
+
+                        <div class="card-meta">
+                            <span class="scheme-badge">Pension</span>
+                            <strong>Monthly pension</strong>
+                        </div>
+
+                        <h2>PM Shram Yogi Maandhan</h2>
+                        <p>A voluntary contributory pension scheme for eligible workers in the unorganised sector.</p>
+                        <a href="https://maandhan.in/" target="_blank" rel="noopener noreferrer">Official Website ↗</a>
+                    </article>
+
+                    <article class="all-scheme-card" data-category="education"
+                        data-income="250000" data-state="gujarat"
+                        data-search="post matric scholarship students education tuition fees financial assistance">
+
+                        <div class="card-meta">
+                            <span class="scheme-badge">Education</span>
+                            <strong>Education assistance</strong>
+                        </div>
+
+                        <h2>Post Matric Scholarship</h2>
+                        <p>Scholarship assistance for eligible students according to the relevant programme criteria.</p>
+                        <a href="https://scholarships.gov.in/" target="_blank" rel="noopener noreferrer">Official Website ↗</a>
+                    </article>
+
+                    <article class="all-scheme-card" data-category="senior"
+                        data-income="250000" data-state="national"
+                        data-search="senior citizens old age pension national social assistance programme">
+
+                        <div class="card-meta">
+                            <span class="scheme-badge">Senior Citizens</span>
+                            <strong>Pension support</strong>
+                        </div>
+
+                        <h2>National Social Assistance Programme</h2>
+                        <p>Social assistance for eligible older people and other groups covered by programme rules.</p>
+                        <a href="https://nsap.nic.in/" target="_blank" rel="noopener noreferrer">Official Website ↗</a>
+                    </article>
+
+                    <article class="all-scheme-card" data-category="agriculture"
+                        data-income="500000" data-state="national"
+                        data-search="pradhan mantri fasal bima yojana crop insurance agriculture farmers">
+
+                        <div class="card-meta">
+                            <span class="scheme-badge">Agriculture</span>
+                            <strong>Crop insurance</strong>
+                        </div>
+
+                        <h2>Pradhan Mantri Fasal Bima Yojana</h2>
+                        <p>Crop insurance for eligible farmers based on notified crops, areas and enrolment conditions.</p>
+                        <a href="https://pmfby.gov.in/" target="_blank" rel="noopener noreferrer">Official Website ↗</a>
+                    </article>
+
+                    <article class="all-scheme-card" data-category="women"
+                        data-income="300000" data-state="national"
+                        data-search="pradhan mantri ujjwala yojana women lpg gas connection">
+
+                        <div class="card-meta">
+                            <span class="scheme-badge">Women</span>
+                            <strong>LPG connection support</strong>
+                        </div>
+
+                        <h2>Pradhan Mantri Ujjwala Yojana</h2>
+                        <p>Support for eligible women from poor households to obtain LPG connections under scheme rules.</p>
+                        <a href="https://www.pmuy.gov.in/" target="_blank" rel="noopener noreferrer">Official Website ↗</a>
+                    </article>
+
+                </div>
+
+                <div id="noSchemesFound" class="no-schemes" hidden>
+                    <h3>No matching schemes found</h3>
+                    <p>Try changing your search, income limit, state or category filters.</p>
+                </div>
+
+                <nav class="scheme-pagination" aria-label="Scheme pagination">
+                    <button type="button" id="previousPage" disabled>Previous</button>
+                    <div id="pageNumbers"></div>
+                    <button type="button" id="nextPage">Next</button>
+                </nav>
 
             </div>
         </div>
+
+        <div class="schemes-note">
+            <strong>Important:</strong> Scheme details, income limits and benefits can change. Check the official government website to confirm your eligibility.
+        </div>
+
     </div>
 </section>
 
 <script>
 (function () {
-    var filters = document.querySelectorAll(".result-filter");
-    var cards = document.querySelectorAll(".result-scheme-card");
-    var noResults = document.getElementById("noResults");
+    const searchInput = document.getElementById("schemeSearch");
+    const searchButton = document.getElementById("searchButton");
+    const categoryInputs = Array.from(document.querySelectorAll(".category-filter"));
+    const incomeRange = document.getElementById("incomeRange");
+    const incomeDisplay = document.getElementById("incomeDisplay");
+    const stateSelect = document.getElementById("statePreference");
+    const clearButton = document.getElementById("clearFilters");
+    const cards = Array.from(document.querySelectorAll(".all-scheme-card"));
+    const noResults = document.getElementById("noSchemesFound");
+    const previousButton = document.getElementById("previousPage");
+    const nextButton = document.getElementById("nextPage");
+    const pageNumbers = document.getElementById("pageNumbers");
+    const resultsCount = document.getElementById("resultsCount");
 
-    filters.forEach(function (filter) {
-        filter.addEventListener("click", function () {
-            filters.forEach(function (button) {
-                button.classList.remove("active");
+    let currentPage = 1;
+    const pageSize = 6;
+
+    function getFilteredCards() {
+        const query = searchInput.value.trim().toLowerCase();
+
+        const selectedCategories = categoryInputs
+            .filter(input => input.checked)
+            .map(input => input.value);
+
+        const maxIncome = Number(incomeRange.value);
+        const selectedState = stateSelect.value;
+
+        return cards.filter(card => {
+            const categoryMatch =
+                selectedCategories.includes(card.dataset.category);
+
+            const incomeMatch =
+                Number(card.dataset.income) <= maxIncome;
+
+            const cardState = card.dataset.state;
+            const stateMatch =
+                selectedState === "all" ||
+                cardState === "national" ||
+                cardState === selectedState;
+
+            const searchableText =
+                (card.innerText + " " + card.dataset.search).toLowerCase();
+
+            const searchMatch =
+                !query || searchableText.includes(query);
+
+            return categoryMatch && incomeMatch && stateMatch && searchMatch;
+        });
+    }
+
+    function renderPageNumbers(totalPages) {
+        pageNumbers.innerHTML = "";
+
+        for (let page = 1; page <= totalPages; page++) {
+            const button = document.createElement("button");
+            button.type = "button";
+            button.textContent = page;
+            button.className = "page-number" +
+                (page === currentPage ? " active" : "");
+
+            button.addEventListener("click", function () {
+                currentPage = page;
+                renderSchemes();
             });
 
-            filter.classList.add("active");
+            pageNumbers.appendChild(button);
+        }
+    }
 
-            var category = filter.getAttribute("data-filter");
-            var visibleCount = 0;
+    function renderSchemes() {
+        const filteredCards = getFilteredCards();
+        const totalPages = Math.max(1, Math.ceil(filteredCards.length / pageSize));
 
-            cards.forEach(function (card) {
-                var matches =
-                    category === "all" ||
-                    card.getAttribute("data-category") === category;
+        if (currentPage > totalPages) {
+            currentPage = totalPages;
+        }
 
-                card.hidden = !matches;
+        cards.forEach(card => {
+            card.hidden = true;
+        });
 
-                if (matches) {
-                    visibleCount++;
-                }
-            });
+        const start = (currentPage - 1) * pageSize;
+        filteredCards.slice(start, start + pageSize).forEach(card => {
+            card.hidden = false;
+        });
 
-            noResults.hidden = visibleCount > 0;
+        noResults.hidden = filteredCards.length !== 0;
+
+        resultsCount.textContent =
+            filteredCards.length + (filteredCards.length === 1
+                ? " scheme found"
+                : " schemes found");
+
+        previousButton.disabled = currentPage === 1;
+        nextButton.disabled = currentPage >= totalPages;
+
+        renderPageNumbers(totalPages);
+    }
+
+    searchButton.addEventListener("click", function () {
+        currentPage = 1;
+        renderSchemes();
+    });
+
+    searchInput.addEventListener("input", function () {
+        currentPage = 1;
+        renderSchemes();
+    });
+
+    searchInput.addEventListener("keydown", function (event) {
+        if (event.key === "Enter") {
+            event.preventDefault();
+            currentPage = 1;
+            renderSchemes();
+        }
+    });
+
+    categoryInputs.forEach(input => {
+        input.addEventListener("change", function () {
+            currentPage = 1;
+            renderSchemes();
         });
     });
 
-    document.querySelectorAll(".roadmap-toggle").forEach(function (button) {
-        button.addEventListener("click", function () {
-            var card = button.closest(".result-scheme-card");
-            var roadmap = card.querySelector(".roadmap-content");
-            var isOpen = roadmap.classList.toggle("open");
+    incomeRange.addEventListener("input", function () {
+        incomeDisplay.textContent =
+            Number(incomeRange.value).toLocaleString("en-IN");
 
-            button.querySelector("span").textContent = isOpen ? "−" : "＋";
-            button.setAttribute("aria-expanded", String(isOpen));
+        currentPage = 1;
+        renderSchemes();
+    });
+
+    stateSelect.addEventListener("change", function () {
+        currentPage = 1;
+        renderSchemes();
+    });
+
+    clearButton.addEventListener("click", function () {
+        categoryInputs.forEach(input => {
+            input.checked = false;
         });
 
-        button.setAttribute("aria-expanded", "false");
+        incomeRange.value = 1000000;
+        incomeDisplay.textContent = "10,00,000";
+        stateSelect.value = "all";
+        searchInput.value = "";
+        currentPage = 1;
+
+        renderSchemes();
     });
+
+    previousButton.addEventListener("click", function () {
+        if (currentPage > 1) {
+            currentPage--;
+            renderSchemes();
+        }
+    });
+
+    nextButton.addEventListener("click", function () {
+        const totalPages = Math.ceil(getFilteredCards().length / pageSize);
+
+        if (currentPage < totalPages) {
+            currentPage++;
+            renderSchemes();
+        }
+    });
+
+    renderSchemes();
 })();
 </script>
 
 </asp:Content>
+

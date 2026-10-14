@@ -24,10 +24,14 @@
             <div class="header-container">
 
                 <a href="Home.aspx" class="brand">
-                    <span class="brand-icon">✿</span>
+                    <img src="../image/wheat-logo.svg"
+     alt="Gram Sahayak"
+     class="brand-icon"
+     width="44"
+     height="44" />
                     <span class="brand-text">
-                        <strong>GRAM SAHAYAK</strong>
-                        <small>One Step Towards Growth</small>
+                        <strong>ગ્રામ સહાયક</strong>
+                        <small>Gram Sahayak</small>
                     </span>
                 </a>
 
@@ -91,7 +95,11 @@
 
                 <div class="footer-about">
                     <a href="Home.aspx" class="footer-brand">
-                        <span class="brand-icon">✿</span>
+                                            <img src="../image/wheat-logo.svg"
+     alt="Gram Sahayak"
+     class="brand-icon"
+     width="44"
+     height="44" />
                         <strong>GRAM SAHAYAK</strong>
                     </a>
 
