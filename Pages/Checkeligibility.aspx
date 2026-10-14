@@ -390,6 +390,18 @@
         }
 
         function validateStep(step) {
+            // Run ASP.NET client-side validation if available
+            if (typeof(Page_ClientValidate) === 'function') {
+                try {
+                    Page_ClientValidate();
+                    if (typeof(Page_IsValid) !== 'undefined' && !Page_IsValid) {
+                        showMessage("Please complete all required fields.");
+                        return false;
+                    }
+                } catch (e) {
+                    // ignore if client validation not available
+                }
+            }
             if (step === 1) {
                 var age = Number(getValue("age"));
 
