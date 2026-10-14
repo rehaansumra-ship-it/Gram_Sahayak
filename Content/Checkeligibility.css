@@ -277,6 +277,23 @@
     border: 1px solid #c9e5cb;
 }
 
+/* ===== VALIDATION STYLES ===== */
+.field-error {
+    color: #c92a2a; /* red */
+    font-size: 12px;
+    margin-top: 6px;
+    display: block;
+}
+
+.validation-summary {
+    color: #7a1b1b;
+    background: #fdecea;
+    border: 1px solid #f5c6cb;
+    padding: 10px;
+    border-radius: 6px;
+    margin-bottom: 12px;
+}
+
 /* ===== RIGHT INFORMATION PANEL ===== */
 
 .eligibility-info {
